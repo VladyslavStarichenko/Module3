@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <class name="ua.com.alevel.model.Post" table="post">
+       <id name="id" column="post_id">
+           <generator class="identity"/>
+       </id>
+        <property name="title" column="title"/>
+        <property name="content" column="content_"/>
+        <many-to-one name="author" column="user_author_id"
+                     class="ua.com.alevel.model.Post"
+                     cascade="save-update"
+                     lazy="false">
+        </many-to-one>
+        <many-to-one name="moderator" column="user_author_id"
+                     class="ua.com.alevel.model.User"
+                     cascade="save-update"
+                     lazy="false">
+        </many-to-one>
+
+
+        <property name="rating" column="rating"/>
+        <property name="status" column="status">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">ua.com.alevel.model.PostStatus</param>
+                <param name="useNamed">true</param>
+            </type>
+        </property>
+    </class>
+</hibernate-mapping>

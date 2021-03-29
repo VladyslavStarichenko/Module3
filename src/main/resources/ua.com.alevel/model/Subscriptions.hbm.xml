@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <class name="ua.com.alevel.model.Subscriptions" table="subscriptions">
+        <id name="subscription_id" column="subscription_id">
+            <generator class="identity"/>
+        </id>
+        <many-to-one name="user_id" column="user_id"
+                     class="ua.com.alevel.model.User"
+                     cascade="save-update"
+                     lazy="false">
+        </many-to-one>
+        <property name="follower_id" column="rating"/>
+        <property name="subscriber_id" column="rating"/>
+    </class>
+</hibernate-mapping>
